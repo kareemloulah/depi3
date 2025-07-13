@@ -2,12 +2,12 @@
 - name: Ensure that a file exist in my home dir
   hosts: ubuntu_servers
   tasks:
-  - name: create a file in my home dir
-    file:
-      path: ~/file1.txt
-      state: touch
-  - name: add in line text
-    lineinfile:
-      path: ~/file1.txt
-      line: kareem was Here From Ansible
-
+    - name: Create a file in my home dir
+      ansible.builtin.file:
+        path: ~/file1.txt
+        state: touch
+        mode: "0600"
+    - name: Add in line text
+      ansible.builtin.lineinfile:
+        path: ~/file1.txt
+        line: kareem was Here From Ansible
