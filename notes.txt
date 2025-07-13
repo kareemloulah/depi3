@@ -2,4 +2,4 @@ ansible => to run ad-hoc module
 ansible-doc => to     get doc of a module or role or collections
 ansible-play => to run a playbook
 git  clone https://github.com/MoustafaRoushdy/depi_r3.git
-
+testin commit
