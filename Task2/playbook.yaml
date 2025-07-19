@@ -1,0 +1,14 @@
+- name: Ensure Vim is installed 
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure Vim is on Ubuntu 
+      when: ansible_os_family == "Debian"
+      ansible.builtin.apt: 
+        name: vim
+        state: present
+    - name: Ensure Vim is on RedHat
+      when: ansible_os_family == "RedHat"
+      ansible.builtin.dnf:
+        name: vim
+        state: present
