@@ -24,11 +24,12 @@
 
     - name : Ensuring that apche is lissitning on port 8080
       ansible.builtin.replace:
+        notify: Ensuring apche2 is reloaded when port changed
         path: /etc/apache2/ports.conf
-        regexp: 'Listen 80$'
+        regexp: '^Listen 80$'
         replace: 'Listen 8080'
-
-    - name: Ensuring apche2 is reloaded 
+  handlers:
+    - name: Ensuring apche2 is reloaded when port changed
       service:
         name: apache2.service
         state: reloaded
