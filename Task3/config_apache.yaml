@@ -23,8 +23,9 @@
     ## use repalce module to replace the port
 
     - name : Ensuring that apche is lissitning on port 8080
+      notify: Ensuring apche2 is reloaded when port changed
       ansible.builtin.replace:
-        notify: Ensuring apche2 is reloaded when port changed
+        
         path: /etc/apache2/ports.conf
         regexp: '^Listen 80$'
         replace: 'Listen 8080'
