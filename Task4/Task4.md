@@ -1,5 +1,7 @@
 # run a container from mariadb image 
+
 ![sc](./Picture3.png)
+
 first try failed because we need to pass MARIADB_ROOT_PASSWORD as an enviroment variable 
 so we run it again and also specify the ports and a container name 
  
