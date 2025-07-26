@@ -16,6 +16,6 @@ docker run --name kareem-mariadb -d -e MARIADB_ROOT_PASSWORD='kareem01' mariadb:
 Docker image inspect mariadb:latest
 ```
 ![sc](./Picture1.png)
+
+
 under ExposedPorts 
-
-
