@@ -5,7 +5,7 @@
   vars:
     package_name: apache2
   vars_files:
-    - "/home/kareem/Documents/depi3/lec67/depi_r3/Task3/ansible_vault.yml"
+    - "/home/kareem/Documents/depi3/depi_r3/Task3/ansible_vault.yml"
     
   tasks:
     - name: insall apache web server
