@@ -11,8 +11,11 @@ docker run --name kareem-mariadb -d -e MARIADB_ROOT_PASSWORD='kareem01' mariadb:
 # run another container but with different port 
 ![sc](./Picture2.png)
 # To get the default open port for any image 
+
+```
+Docker image inspect mariadb:latest
+```
 ![sc](./Picture1.png)
-```
-Docker image inspect <imagename>
-```
 under ExposedPorts 
+
+
