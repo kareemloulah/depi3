@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: flask-app
+  name: flask-app
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: flask-app
+      namespace: apps
+    spec:
+      containers:
+      - image: loulah/flask_app:v0.1
+        name: flask-app-f9rhb
+        ports:
+          - containerPort: 5000
+        resources: {}
+status: {}
