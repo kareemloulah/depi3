@@ -1,0 +1,1 @@
+k run dbclient -it -n database-client --image=alpine/mysql --rm -- -h mariadb.database-server -u root -p12345 -P 3306
