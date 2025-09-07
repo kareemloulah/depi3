@@ -1,0 +1,58 @@
+---
+- name: Create Prometheus User and install service 
+  hosts: all
+  become: true
+  tasks:
+    - name: Create Prometheus User
+      ansible.builtin.user:
+        name: Prometheus
+        state: present
+        shell: /usr/bin/false
+
+    - name: Create a directory for config file
+      ansible.builtin.file:
+        path: /etc/prometheus/
+        state: directory
+        mode: '0755' # Optional: set permissions for the directory
+        owner: Prometheus # Optional: set ownership
+        group: Prometheus # Optional: set group
+
+    - name: Copy prometheus config file 
+      ansible.builtin.copy:
+        src: ./prometheus-3.5.0.linux-amd64/prometheus.yml
+        dest: /etc/prometheus/prometheus.yml
+        mode: '0644' # Optional: set permissions for the copied file
+        owner: Prometheus # Optional: set ownership
+        group: Prometheus # Optional: set group
+
+    - name: Create a tsdb directory for prometheus service
+      ansible.builtin.file:
+        path: /var/lib/prometheus
+        state: directory
+        mode: '0644' # Optional: set permissions for the directory
+        owner: Prometheus # Optional: set ownership
+        group: Prometheus # Optional: set group
+
+    - name: Copy a prometheus.service file to the systemd directory
+      ansible.builtin.copy:
+        src: ./prometheus.service
+        dest: /etc/systemd/system/prometheus.service
+        mode: '0755' # Optional: set permissions for the copied file
+        owner: Prometheus # Optional: set ownership
+        group: Prometheus # Optional: set group
+
+    - name: Copy a prometheus excutable 
+      ansible.builtin.copy:
+        src: ./prometheus-3.5.0.linux-amd64/prometheus
+        dest: /usr/local/bin/
+        mode: '0755' # Optional: set permissions for the copied file
+        owner: Prometheus # Optional: set ownership
+        group: Prometheus # Optional: set group
+        
+    - name: Copy a promtool excutable
+      ansible.builtin.copy:
+        src: ./prometheus-3.5.0.linux-amd64/promtool
+        dest: usr/local/bin/
+        mode: '0755' # Optional: set permissions for the copied file
+        owner: Prometheus # Optional: set ownership
+        group: Prometheus # Optional: set group
