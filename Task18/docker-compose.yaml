@@ -1,0 +1,43 @@
+volumes:
+  prometheus_data:
+  alert_manager:
+
+networks:
+  monitoring:
+
+services:
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: prometheus
+    networks:
+      - monitoring
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert.yaml:/etc/prometheus/alert.yaml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+  promalert:
+    image: prom/alertmanager:v0.28.1
+    container_name: promalert
+    networks:
+      - monitoring
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - ./telegramTK:/etc/alertmanager/telegramTK
+  node-exporter:
+    image: prom/node-exporter:v1.5.0
+    container_name: node-exporter
+    command:
+      - '--path.rootfs=/host'
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/host:ro
+    expose:
+      - "9100"
+    networks:
+      - monitoring
+  

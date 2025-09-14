@@ -1,0 +1,13 @@
+groups:
+- name: Node Exporter
+  labels:
+    team: Telegram
+  rules:
+  - alert: Node Exporter down
+    expr: up{job="node-exporter"} == 0
+    for: 5s
+    keep_firing_for: 10s
+    labels:
+      severity: page
+    annotations:
+      summary: Node_Exporter Down

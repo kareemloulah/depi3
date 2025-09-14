@@ -1,0 +1,16 @@
+global:
+route:
+  receiver: 'Email'
+receivers:
+- name: telegram
+  telegram_configs:
+    - bot_token_file: /etc/alertmanager/telegramTK
+      chat_id: -4691179354
+- name: Email
+  email_configs:
+    - to: loulahkareem@gmail.com
+      from: MS_KokPNV@test-vz9dlem0nqp4kj50.mlsender.net
+      smarthost: smtp.mailersend.net:587
+      auth_username: "MS_KokPNV@test-vz9dlem0nqp4kj50.mlsender.net"
+      auth_password: mssp.v5iZ29G.pq3enl69kkrl2vwr.qBGBZTB
+      require_tls: true
